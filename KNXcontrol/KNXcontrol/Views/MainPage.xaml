@@ -8,27 +8,30 @@
             x:Class="KNXcontrol.Views.MainPage">
 
     <TabbedPage.Children>
-        <NavigationPage Title="Browse">
-            <NavigationPage.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="tab_feed.png"/>
-                </OnPlatform>
-            </NavigationPage.Icon>
+        <NavigationPage IconImageSource="light_icon.png">
             <x:Arguments>
                 <views:ItemsPage />
             </x:Arguments>
         </NavigationPage>
-        
-        <NavigationPage Title="About">
-            <NavigationPage.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="tab_about.png"/>
-                </OnPlatform>
-            </NavigationPage.Icon>
+
+        <NavigationPage IconImageSource="blinds_icon.png">
             <x:Arguments>
                 <views:AboutPage />
             </x:Arguments>
         </NavigationPage>
+
+        <NavigationPage IconImageSource="scene_icon.png">
+            <x:Arguments>
+                <views:ItemDetailPage />
+            </x:Arguments>
+        </NavigationPage>
+
+        <NavigationPage IconImageSource="cog_icon.png">
+            <x:Arguments>
+                <views:SettingsPage />
+            </x:Arguments>
+        </NavigationPage>
+
+
     </TabbedPage.Children>
-    
 </TabbedPage>
