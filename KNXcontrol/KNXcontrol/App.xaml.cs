@@ -12,6 +12,7 @@ namespace KNXcontrol
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
+            DependencyService.Register<IToastService>();
             MainPage = new MainPage();
         }
 

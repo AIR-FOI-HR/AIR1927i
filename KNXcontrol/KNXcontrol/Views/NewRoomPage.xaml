@@ -12,11 +12,11 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="5,5,5,0">
             <Label Text="Naziv" FontSize="Medium" />
-            <Entry Text="{Binding Room.Name}" FontSize="Small" Margin="2"/>
+            <Entry Text="{Binding Room.Name}" FontSize="Small"/>
             <Label Text="Opis" FontSize="Medium" />
-            <Editor Text="{Binding Room.Description}" FontSize="Small" Margin="2" />
+            <Editor Text="{Binding Room.Description}" FontSize="Small"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

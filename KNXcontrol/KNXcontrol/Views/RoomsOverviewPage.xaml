@@ -5,15 +5,55 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              Title="Pregled soba"
-             x:Class="KNXcontrol.Views.RoomsOverviewPage">
+             x:Class="KNXcontrol.Views.RoomsOverviewPage"
+             x:Name="RoomsOverview">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="plus.png" Text="Dodaj" Clicked="AddRoom_Clicked"/>
     </ContentPage.ToolbarItems>
-    
-    <ContentPage.Content>
-        <StackLayout x:Name="roomsOverviewLayout">
+    <StackLayout>
+        <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadRoomsCommand}">
+            <CollectionView x:Name="RoomsCollectionView"
+                ItemsSource="{Binding Rooms}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Gray"
+                           CornerRadius="7"
+                           Padding="5" Scale="0.97">
+                            <StackLayout Spacing="6">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Name}" 
+                                        d:Text="{Binding .}"
+                                        FontSize="Medium"
+                                        VerticalOptions="Center"
+                                        FontAttributes="Bold" />
+                                    <Button Text="Obriši" FontSize="10" 
+                                            HorizontalOptions="EndAndExpand" Scale="0.6" 
+                                            BackgroundColor="DarkRed" TextColor="LightGray" 
+                                            CornerRadius="7"
+                                            Clicked="Delete_Clicked"
+                                            CommandParameter="{Binding _id}"></Button>
+                                </StackLayout>                              
+                                <BoxView Color="Gray"
+                                         HeightRequest="2"
+                                         HorizontalOptions="Fill" />
+                                <Label Text="{Binding Description}" 
+                                       d:Text="Item descripton"/>
 
-        </StackLayout>
-    </ContentPage.Content>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="OnRoomSelection" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+        <Label TextColor="Red" VerticalOptions="Center" HorizontalOptions="Center" Text="Nema podataka." x:Name="NoDataLabel" IsVisible="False"></Label>
+        <Label TextColor="Red" VerticalOptions="Center" HorizontalOptions="Center" Text="Došlo je do greške kod dohvaćanja podataka." x:Name="ErrorLabel" IsVisible="False"></Label>
+    </StackLayout>
+
+
+
 </ContentPage>

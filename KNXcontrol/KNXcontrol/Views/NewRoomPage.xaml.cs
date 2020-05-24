@@ -1,4 +1,5 @@
 ﻿using KNXcontrol.Models;
+using KNXcontrol.Services;
 using KNXcontrol.ServicesImplementation;
 using System;
 
@@ -12,25 +13,39 @@ namespace KNXcontrol.Views
     {
         public Room Room { get; set; }
         private readonly RoomsService roomsService = new RoomsService();
+        public bool IsUpdate { get; set; }
 
-        public NewRoomPage()
+        public NewRoomPage(Room room)
         {
             InitializeComponent();
 
-            Room = new Room();
+            Room = room ?? new Room();
+            IsUpdate = room != null ? true : false;
 
             BindingContext = this;
         }
 
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
-            Navigation.PopModalAsync();
+            await Navigation.PopModalAsync();
         }
 
-        private void Save_Clicked(object sender, EventArgs e)
+        private async void Save_Clicked(object sender, EventArgs e)
         {
-            roomsService.AddRoom(Room);
-            Navigation.PopModalAsync();
+            if (IsUpdate)
+            {
+                await roomsService.UpdateRoom(Room);
+                DependencyService.Get<IToastService>().ShowToast("Soba je uspješno ažurirana!");
+                MessagingCenter.Send(this, "UPDATE", Room);
+                await Navigation.PopModalAsync();
+            }
+            else
+            {
+                await roomsService.AddRoom(Room);
+                DependencyService.Get<IToastService>().ShowToast("Soba je uspješno kreirana!");
+                MessagingCenter.Send(this, "CREATE", Room);
+                await Navigation.PopModalAsync();
+            }
         }
     }
 }
