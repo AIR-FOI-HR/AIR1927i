@@ -9,5 +9,6 @@ namespace KNXcontrol.Services
         Task<bool> AddRoom(Room room);
         Task<List<Room>> RoomsOverview();
         Task<bool> UpdateRoom(Room room);
+        Task<bool> DeleteRoom(string id);
     }
 }

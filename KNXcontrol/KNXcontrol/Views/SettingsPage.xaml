@@ -4,10 +4,15 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="KNXcontrol.Views.SettingsPage">
+             x:Class="KNXcontrol.Views.SettingsPage"
+             Title="Postavke"
+             IconImageSource="cog_icon.png">
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Prostorije" Clicked="RoomsButton_Clicked"></Button>
+            <Button Text="Prostorije" Clicked="RoomsButton_Clicked" CornerRadius="10" Margin="10,5,10,5"></Button>
+            <Button Text="Tipovi objekta" Clicked="TypesButton_Clicked" CornerRadius="10" Margin="10,5,10,5"></Button>
+            <Button Text="KNX objekti" Clicked="KnxObjectsButton_Clicked" CornerRadius="10" Margin="10,5,10,5"></Button>
+            <Button Text="Centralne funkcije" Clicked="CentralFunctionsButton_Clicked" CornerRadius="10" Margin="10,5,10,5"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

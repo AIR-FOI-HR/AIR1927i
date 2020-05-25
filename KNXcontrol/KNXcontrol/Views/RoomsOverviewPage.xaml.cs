@@ -43,7 +43,7 @@ namespace KNXcontrol.Views
         {
             var id = ((Button)sender).CommandParameter.ToString();
 
-            bool answer = await DisplayAlert("Brisanje prostorije", "Jeste li sigurni da želite obrisati prostoriju", "Da", "Odustani");
+            bool answer = await DisplayAlert("Brisanje prostorije", "Jeste li sigurni da želite obrisati prostoriju?", "Da", "Odustani");
 
             if (answer)
             {
@@ -51,7 +51,7 @@ namespace KNXcontrol.Views
                 if (result)
                 {
                     DependencyService.Get<IToastService>().ShowToast("Prostorija je uspješno obrisana!");
-                    var deletedItem = viewModel.Rooms.ToList().Find(x => x._id == id);
+                    var deletedItem = viewModel.Rooms.ToList().Find(x => x._id.ToString() == id);
                     viewModel.Rooms.Remove(deletedItem);
                 }
             }

@@ -27,24 +27,33 @@ namespace KNXcontrol.Views
 
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
+            Cancel.Clicked += null;
+            Cancel.IsEnabled = false;
             await Navigation.PopModalAsync();
         }
 
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            if (IsUpdate)
-            {
-                await roomsService.UpdateRoom(Room);
-                DependencyService.Get<IToastService>().ShowToast("Soba je uspješno ažurirana!");
-                MessagingCenter.Send(this, "UPDATE", Room);
-                await Navigation.PopModalAsync();
-            }
+            if(string.IsNullOrEmpty(Room.Name))
+                DependencyService.Get<IToastService>().ShowToast("Naziv prostorije je obavezan!");
             else
             {
-                await roomsService.AddRoom(Room);
-                DependencyService.Get<IToastService>().ShowToast("Soba je uspješno kreirana!");
-                MessagingCenter.Send(this, "CREATE", Room);
-                await Navigation.PopModalAsync();
+                Save.Clicked += null;
+                Save.IsEnabled = false;
+                if (IsUpdate)
+                {
+                    await roomsService.UpdateRoom(Room);
+                    DependencyService.Get<IToastService>().ShowToast("Soba je uspješno ažurirana!");
+                    MessagingCenter.Send(this, "UPDATE", Room);
+                    await Navigation.PopModalAsync();
+                }
+                else
+                {
+                    await roomsService.AddRoom(Room);
+                    DependencyService.Get<IToastService>().ShowToast("Soba je uspješno kreirana!");
+                    MessagingCenter.Send(this, "CREATE", Room);
+                    await Navigation.PopModalAsync();
+                }
             }
         }
     }

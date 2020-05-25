@@ -4,17 +4,15 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             Title="Pregled soba"
-             x:Class="KNXcontrol.Views.RoomsOverviewPage"
-             x:Name="RoomsOverview">
-
+             Title="Pregled tipova"
+             x:Class="KNXcontrol.Views.TypesOverviewPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="plus.png" Clicked="AddRoom_Clicked"/>
+        <ToolbarItem IconImageSource="plus.png" Clicked="AddType_Clicked"/>
     </ContentPage.ToolbarItems>
     <StackLayout>
-        <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadRoomsCommand}">
-            <CollectionView x:Name="RoomsCollectionView"
-                ItemsSource="{Binding Rooms}">
+        <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadTypesCommand}">
+            <CollectionView x:Name="TypeCollectionView"
+                ItemsSource="{Binding Types}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame BorderColor="Gray"
@@ -34,6 +32,7 @@
                                             Clicked="Delete_Clicked"
                                             CommandParameter="{Binding _id}"></Button>
                                 </StackLayout>
+
                                 <BoxView Color="Gray"
                                          HeightRequest="2"
                                          HorizontalOptions="Fill" />
@@ -41,7 +40,7 @@
                                        d:Text="Item descripton"/>
 
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="OnRoomSelection" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                    <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="OnTypeSelection" CommandParameter="{Binding .}"></TapGestureRecognizer>
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </Frame>

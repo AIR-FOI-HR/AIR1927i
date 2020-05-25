@@ -4,19 +4,21 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="KNXcontrol.Views.NewRoomPage">
+             x:Class="KNXcontrol.Views.NewTypePage">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="Cancel" Text="Odustani" Clicked="Cancel_Clicked" />
         <ToolbarItem x:Name="Save" Text="Spremi" Clicked="Save_Clicked" />
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
         <StackLayout Padding="5,5,5,0">
             <Label Text="Naziv" FontSize="Medium" FontAttributes="Bold"/>
-            <Entry Text="{Binding Room.Name}" FontSize="Small"/>
+            <Entry Text="{Binding Type.Name}" FontSize="Small"/>
+            <Label Text="Zadana vrijednost" FontSize="Medium" FontAttributes="Bold"/>
+            <Entry Text="{Binding Type.DefaultValue}" FontSize="Small"/>
             <Label Text="Opis" FontSize="Medium" />
-            <Editor Text="{Binding Room.Description}" FontSize="Small"/>
+            <Editor Text="{Binding Type.Description}" FontSize="Small"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

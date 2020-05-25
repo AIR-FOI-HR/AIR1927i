@@ -14,7 +14,7 @@ namespace KNXcontrol.ServicesImplementation
         {
             try
             {
-                room._id = Guid.NewGuid().ToString();
+                room._id = Guid.NewGuid();
                 var response = await (Config.ServiceBase + "add-room").PostJsonAsync(new { data = room });
                 return true;
             }
