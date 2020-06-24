@@ -8,7 +8,7 @@ namespace KNXcontrol.Models
 
         public DPT()
         {
-            DPTs = new List<string>() { "DPT 1", "DPT 2", "DPT 3", "DPT 4", "DPT 5", "DPT 6", "DPT 7", "DPT 8", "DPT 9", "DPT 10" };
+            DPTs = new List<string>() { "DPT1", "DPT2", "DPT3", "DPT4", "DPT5", "DPT6", "DPT7", "DPT8", "DPT9", "DPT10" };
         }
     }
 }

@@ -10,12 +10,12 @@ namespace KNXcontrol.ServicesImplementation
 {
     public class KnxObjectsService : IKnxObjectsService
     {
-        public async Task<bool> AddKnxObject(KnxObject room)
+        public async Task<bool> AddKnxObject(KnxObject knxObject)
         {
             try
             {
-                room._id = Guid.NewGuid();
-                var response = await(Config.ServiceBase + "add-knx-object").PostJsonAsync(new { data = room });
+                knxObject._id = Guid.NewGuid();
+                var response = await(Config.ServiceBase + "add-knx-object").PostJsonAsync(new { data = knxObject });
                 return true;
             }
             catch (Exception ex)
@@ -50,11 +50,23 @@ namespace KNXcontrol.ServicesImplementation
             }
         }
 
-        public async Task<bool> UpdateKnxObject(KnxObject room)
+        public async Task<List<KnxObject>> KnxObjectsByRoom(string knxObjectId)
         {
             try
             {
-                var response = await (Config.ServiceBase + "update-knx-object").PostJsonAsync(new { data = room });
+                return await (Config.ServiceBase + $"get-knx-objects/{knxObjectId}").GetJsonAsync<List<KnxObject>>();
+            }
+            catch (Exception ex)
+            {
+                return new List<KnxObject>();
+            }
+        }
+
+        public async Task<bool> UpdateKnxObject(KnxObject knxObject)
+        {
+            try
+            {
+                var response = await (Config.ServiceBase + "update-knx-object").PostJsonAsync(new { data = knxObject });
                 return true;
             }
             catch (Exception ex)

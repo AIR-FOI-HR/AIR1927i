@@ -10,7 +10,7 @@
     <TabbedPage.Children>
         <NavigationPage IconImageSource="light_icon.png">
             <x:Arguments>
-                <views:ItemsPage />
+                <views:LightsPage />
             </x:Arguments>
         </NavigationPage>
 
@@ -32,6 +32,6 @@
             </x:Arguments>
         </NavigationPage>
 
-
     </TabbedPage.Children>
+    
 </TabbedPage>

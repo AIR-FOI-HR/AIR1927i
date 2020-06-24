@@ -27,8 +27,29 @@ namespace KNXcontrol.Views
 
             Rooms = rooms;
             Types = types;
+
             var dataPointTypes = new DPT();
             DataPointTypes = dataPointTypes.DPTs;
+
+            if (IsUpdate)
+            {
+                for (int i = 0; i < types.Count; i++)
+                {
+                    if (types[i]._id == knxObject.Type._id)
+                    {
+                        tip.SelectedIndex = i;
+                        break;
+                    }
+                }
+                for (int i = 0; i < rooms.Count; i++)
+                {
+                    if (rooms[i]._id == knxObject.Room._id)
+                    {
+                        prostorija.SelectedIndex = i;
+                        break;
+                    }
+                }
+            }
 
             BindingContext = this;
         }
@@ -81,7 +102,7 @@ namespace KNXcontrol.Views
             if (KnxObject.Type != null)
             {
                 KnxObject.Value = KnxObject.Type.DefaultValue;
-                Vrijednost.Text = KnxObject.Value;
+                vrijednost.Text = KnxObject.Value;
                 DependencyService.Get<IToastService>().ShowToast("Vrijednost je automatski postavljena prema tipu!");
             }
         }
