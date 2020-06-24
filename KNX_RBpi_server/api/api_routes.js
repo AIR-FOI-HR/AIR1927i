@@ -1,48 +1,59 @@
-// 'use strict' this is a header that forces the javascript engine to apply a stricter 
-// interpretation of your code. For more details take a look at
-// https://stackoverflow.com/questions/1335851/what-does-use-strict-do-in-javascript-and-what-is-the-reasoning-behind-it
 'use strict';
 
-// Define routes and export them
-// We need to require the controller functions. These are in a
-// separate file so as to keep the code cleaner.
-
-// The route path will be appended to the host address, for example on my LAN the full 
-// url reads as...
-// http://192.168.0.101:3000/api/knx/test 
-
-// Here we define two rotes a post and a get. On receiving an appropriate request (post 
-// or get) to the correct route, it will call the controller function (either test 
-// or get_id_info )
-
-// You can easily add more routes, but in order for the code to run you will need also 
-// to define the controller function too.
-
 module.exports = function(app) {
-  var test_controller = require('../api/api_controllers');
+  var types_controller = require('../api/types_controller');
+  var rooms_controller = require('../api/rooms_controller');
+  var knx_objects_controller = require('../api/knx_objects_controller');
+  var lights_controller = require('../api/lights_controller');
 
-  // KNX Routes
-  app.route('/api/knx/off')
-    .get(test_controller.off);
+  // Types
+  app.route('/api/knx/add-type')
+    .post(types_controller.addType)
 
-  app.route('/api/knx/on')
-    .get(test_controller.on);
-  // app.route('/api/knx/info/:id')
-  // 	.get(test_controller.get_id_info);
-  app.route('/api/knx/multiple')
-    .post(test_controller.multiple);
+  app.route('/api/knx/get-types')
+    .get(types_controller.getAll);
 
-  app.route('/api/knx/single')
-    .post(test_controller.single);
+  app.route('/api/knx/delete-type')
+    .post(types_controller.deleteType)
 
-  app.route('/api/knx/get-rooms-data/:room')
-    .get(test_controller.getRoomsData);
+  app.route('/api/knx/update-type')
+    .post(types_controller.updateType)
+
+  // Rooms
+  app.route('/api/knx/add-room')
+    .post(rooms_controller.addRoom)
 
   app.route('/api/knx/get-rooms')
-    .get(test_controller.getRooms);
+    .get(rooms_controller.getAll);
 
+  app.route('/api/knx/delete-room')
+    .post(rooms_controller.deleteRoom)
+
+  app.route('/api/knx/update-room')
+    .post(rooms_controller.updateRoom)
+
+  // Knx objects
+  app.route('/api/knx/add-knx-object')
+    .post(knx_objects_controller.addKnxObject)
+
+  app.route('/api/knx/get-knx-objects')
+    .get(knx_objects_controller.getAll);
+
+  app.route('/api/knx/delete-knx-object')
+    .post(knx_objects_controller.deleteKnxObject)
+
+  app.route('/api/knx/update-knx-object')
+    .post(knx_objects_controller.updateKnxObject)
+
+  app.route('/api/knx/get-knx-objects/:roomId')
+    .get(knx_objects_controller.getAllByRoom);
+
+    // Lights
   app.route('/api/knx/dim')
-    .post(test_controller.dim);
+    .post(lights_controller.dim)
+
+  app.route('/api/knx/switch')
+    .post(lights_controller.dim)
 };
 
 
