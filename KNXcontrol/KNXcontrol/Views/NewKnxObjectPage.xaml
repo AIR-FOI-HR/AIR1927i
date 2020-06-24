@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Novi KNX objekt"
+             x:Class="KNXcontrol.Views.NewKnxObjectPage">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="Cancel" Text="Odustani" Clicked="Cancel_Clicked" />
+        <ToolbarItem x:Name="Save" Text="Spremi" Clicked="Save_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Padding="5,5,5,0">
+            <Label Text="Adresa" FontSize="Medium" FontAttributes="Bold"/>
+            <Entry Text="{Binding KnxObject.Address}" FontSize="Small"/>
+            <Label Text="Tip" FontSize="Medium" FontAttributes="Bold"/>
+            <Picker Title="Odaberite tip"
+                    ItemsSource="{Binding Types}" 
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding KnxObject.Type}"
+                    SelectedIndexChanged="OnTypePickChange">
+            </Picker>
+            <Label Text="Vrijednost" FontSize="Medium" FontAttributes="Bold"/>
+            <Entry Text="{Binding KnxObject.Value}" x:Name="Vrijednost" FontSize="Small"/>
+            <Label Text="DPT" FontSize="Medium" FontAttributes="Bold"/>
+            <Picker Title="Odaberite DPT"
+                    ItemsSource="{Binding DataPointTypes}"
+                    SelectedItem="{Binding KnxObject.DPT}">
+            </Picker>
+            <Label Text="Prostorija" FontSize="Medium" FontAttributes="Bold"/>
+            <Picker Title="Odaberite prostoriju"
+                    ItemsSource="{Binding Rooms}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding KnxObject.Room}">
+            </Picker>
+            <Label Text="Opis" FontSize="Medium" />
+            <Editor Text="{Binding KnxObject.Description}" FontSize="Small"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -4,12 +4,48 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             Title="Pregled KNX objekata"
              x:Class="KNXcontrol.Views.KnxObjectsOverviewPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="plus.png" Clicked="AddKnxObject_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadKnxObjectsCommand}">
+            <CollectionView x:Name="KnxObjectsCollectionView"
+                ItemsSource="{Binding KnxObjects}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Gray"
+                           CornerRadius="7"
+                           Padding="5" Scale="0.97">
+                            <StackLayout Spacing="6">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Address}" 
+                                        d:Text="{Binding .}"
+                                        FontSize="Medium"
+                                        VerticalOptions="Center"
+                                        FontAttributes="Bold" />
+                                    <Button Text="Obriši" FontSize="10" 
+                                            HorizontalOptions="EndAndExpand" Scale="0.6" 
+                                            BackgroundColor="DarkRed" TextColor="LightGray" 
+                                            CornerRadius="7"
+                                            Clicked="Delete_Clicked"
+                                            CommandParameter="{Binding _id}"></Button>
+                                </StackLayout>
+                                <BoxView Color="Gray"
+                                         HeightRequest="2"
+                                         HorizontalOptions="Fill" />
+                                <Label Text="{Binding Description}" 
+                                       d:Text="Item descripton"/>
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="OnKnxObjectSelection" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </StackLayout>
 </ContentPage>

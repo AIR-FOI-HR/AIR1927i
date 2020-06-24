@@ -11,6 +11,6 @@ namespace KNXcontrol.Services
         Task<bool> AddKnxObject(KnxObject room);
         Task<List<KnxObject>> KnxObjectsOverview();
         Task<bool> UpdateKnxObject(KnxObject room);
-        Task<bool> DeleteKnxObject(Guid id);
+        Task<bool> DeleteKnxObject(string id);
     }
 }

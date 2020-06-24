@@ -1,4 +1,6 @@
-﻿using KNXcontrol.Models;
+﻿using Flurl.Http;
+using KNXcontrol.Configuration;
+using KNXcontrol.Models;
 using KNXcontrol.Services;
 using System;
 using System.Collections.Generic;
@@ -8,24 +10,57 @@ namespace KNXcontrol.ServicesImplementation
 {
     public class KnxObjectsService : IKnxObjectsService
     {
-        public Task<bool> AddKnxObject(KnxObject room)
+        public async Task<bool> AddKnxObject(KnxObject room)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                room._id = Guid.NewGuid();
+                var response = await(Config.ServiceBase + "add-knx-object").PostJsonAsync(new { data = room });
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
-        public Task<bool> DeleteKnxObject(Guid id)
+
+        public async Task<bool> DeleteKnxObject(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = await(Config.ServiceBase + "delete-knx-object").PostJsonAsync(new { id = id });
+                return result.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
-        public Task<List<KnxObject>> KnxObjectsOverview()
+        public async Task<List<KnxObject>> KnxObjectsOverview()
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                return await (Config.ServiceBase + "get-knx-objects").GetJsonAsync<List<KnxObject>>();
+            }
+            catch (Exception ex)
+            {
+                return new List<KnxObject>();
+            }
         }
 
-        public Task<bool> UpdateKnxObject(KnxObject room)
+        public async Task<bool> UpdateKnxObject(KnxObject room)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var response = await (Config.ServiceBase + "update-knx-object").PostJsonAsync(new { data = room });
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
 
