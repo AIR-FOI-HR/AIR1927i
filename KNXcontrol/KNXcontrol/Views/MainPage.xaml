@@ -16,13 +16,7 @@
 
         <NavigationPage IconImageSource="blinds_icon.png">
             <x:Arguments>
-                <views:AboutPage />
-            </x:Arguments>
-        </NavigationPage>
-
-        <NavigationPage IconImageSource="scene_icon.png">
-            <x:Arguments>
-                <views:ItemDetailPage />
+                <views:BlindsPage />
             </x:Arguments>
         </NavigationPage>
 

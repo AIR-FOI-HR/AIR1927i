@@ -8,11 +8,21 @@
              Title="Postavke"
              IconImageSource="cog_icon.png">
     <ContentPage.Content>
-        <StackLayout>
-            <Button Text="Prostorije" Clicked="RoomsButton_Clicked" CornerRadius="10" Margin="10,5,10,5"></Button>
-            <Button Text="Tipovi objekta" Clicked="TypesButton_Clicked" CornerRadius="10" Margin="10,5,10,5"></Button>
-            <Button Text="KNX objekti" Clicked="KnxObjectsButton_Clicked" CornerRadius="10" Margin="10,5,10,5"></Button>
-            <Button Text="Centralne funkcije" Clicked="CentralFunctionsButton_Clicked" CornerRadius="10" Margin="10,5,10,5"></Button>
-        </StackLayout>
+        <Frame Margin="5,5,5,5">
+            <StackLayout>
+                <Button Text="Prostorije" Clicked="RoomsButton_Clicked" CornerRadius="10" Margin="0,5,0,5"></Button>
+                <Button Text="Tipovi objekta" Clicked="TypesButton_Clicked" CornerRadius="10" Margin="0,5,0,5"></Button>
+                <Button Text="KNX objekti" Clicked="KnxObjectsButton_Clicked" CornerRadius="10" Margin="0,5,0,5"></Button>
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Centralne funkcije" FontSize="Medium"></Label>
+                        <StackLayout Orientation="Horizontal">
+                            <Button Text="Svjetlo" Clicked="Lights_Clicked" HorizontalOptions="CenterAndExpand"></Button>
+                            <Button Text="Žaluzine" Clicked="Blinds_Clicked" HorizontalOptions="CenterAndExpand"></Button>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>           
+            </StackLayout>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

@@ -22,6 +22,8 @@ namespace KNXcontrol.Views
             Room = room ?? new Room();
             IsUpdate = room != null ? true : false;
 
+            Title = IsUpdate ? "Uredi prostoriju" : "Nova prostorija";
+
             BindingContext = this;
         }
 

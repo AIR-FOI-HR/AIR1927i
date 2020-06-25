@@ -25,6 +25,8 @@ namespace KNXcontrol.Views
             KnxObject = knxObject ?? new KnxObject();
             IsUpdate = knxObject != null ? true : false;
 
+            Title = IsUpdate ? "Uredi KNX objekt" : "Novi KNX objekt";
+
             Rooms = rooms;
             Types = types;
 

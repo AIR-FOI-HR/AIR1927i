@@ -56,6 +56,7 @@ namespace KNXcontrol.Views
                                 Value = double.Parse(knxObject.Value),
                                 MinimumTrackColor = Color.Yellow,
                                 MaximumTrackColor = Color.Black,
+                                ThumbColor = Color.LightGray,
                                 ScaleY = 2
                             };
                             slider.DragCompleted += delegate (object sender, EventArgs e) { Slider_ValueChanged(sender, e, knxObject); };
@@ -76,7 +77,9 @@ namespace KNXcontrol.Views
                                 IsToggled = knxObject.Value == "0" ? false : true,
                                 HorizontalOptions = LayoutOptions.EndAndExpand,
                                 Scale = 1.3,
-                                Margin = new Thickness(0, 10, 20, 0)
+                                Margin = new Thickness(0, 10, 20, 0),
+                                OnColor = Color.Yellow,
+                                ThumbColor = Color.LightGray
                             };
 
                             toggle.Toggled += delegate (object sender, ToggledEventArgs e) { ToggleChange(sender, e, knxObject); };
@@ -106,8 +109,8 @@ namespace KNXcontrol.Views
             {
                 Slider slid = sender as Slider;
                 knxObj.Value = ((int)slid.Value).ToString();
-                LightsService.Dim(knxObj);
-                KnxObjectsService.UpdateKnxObject(knxObj);
+                _ = LightsService.Dim(knxObj);
+                _ = KnxObjectsService.UpdateKnxObject(knxObj);
             }
             catch
             {
@@ -121,8 +124,8 @@ namespace KNXcontrol.Views
             {
                 Switch toggle = sender as Switch;
                 knxObj.Value = toggle.IsToggled ? "1" : "0";
-                LightsService.Switch(knxObj);
-                KnxObjectsService.UpdateKnxObject(knxObj);
+                _ = LightsService.Switch(knxObj);
+                _ = KnxObjectsService.UpdateKnxObject(knxObj);
             }
             catch
             {

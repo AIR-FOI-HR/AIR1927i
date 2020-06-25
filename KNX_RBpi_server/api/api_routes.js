@@ -5,6 +5,7 @@ module.exports = function(app) {
   var rooms_controller = require('../api/rooms_controller');
   var knx_objects_controller = require('../api/knx_objects_controller');
   var lights_controller = require('../api/lights_controller');
+  var blinds_controller = require('../api/blinds_controller');
 
   // Types
   app.route('/api/knx/add-type')
@@ -53,7 +54,14 @@ module.exports = function(app) {
     .post(lights_controller.dim)
 
   app.route('/api/knx/switch')
-    .post(lights_controller.dim)
+    .post(lights_controller.switch)
+
+  // Blinds
+  app.route('/api/knx/rotate')
+    .post(blinds_controller.rotate)
+
+  app.route('/api/knx/move')
+    .post(blinds_controller.move)
 };
 
 

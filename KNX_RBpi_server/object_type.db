@@ -1,2 +1,4 @@
 {"_id":"3470cecb-2449-4a5d-ae6e-1b7b34ce1c27","Name":"Svjetlo - obično ","DefaultValue":"0","Description":"Obično svjetlo koje se može ugasiti ili upaliti "}
+{"_id":"c0498ca5-6001-439b-a85a-afcaf3454f4d","Name":"Zaluzine - rotacija","DefaultValue":"0","Description":"Rotacija zaluzina - zatvaranje/otvaranje"}
 {"_id":"d7a805da-b32c-40d7-b296-2456838d206d","Name":"Svjetlo - dimmable","DefaultValue":"125","Description":"Svjetlo koje se može prigušiti "}
+{"_id":"facd49ab-4d87-44f4-b111-437e86a596d9","Name":"Zaluzine - gore/dolje","DefaultValue":"0","Description":"Zaluzine koje se mogu pokretati gore/dolje"}

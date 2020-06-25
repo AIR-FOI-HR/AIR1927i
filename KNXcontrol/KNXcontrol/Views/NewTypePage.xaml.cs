@@ -20,6 +20,8 @@ namespace KNXcontrol.Views
             Type = type ?? new Type();
             IsUpdate = type != null ? true : false;
 
+            Title = IsUpdate ? "Uredi tip" : "Novi tip";
+
             BindingContext = this;
         }
 
