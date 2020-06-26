@@ -1,5 +1,8 @@
 ﻿namespace KNXcontrol.Configuration
 {
+    /// <summary>
+    /// Static class with configuaration settings - used for configuring the work of the application
+    /// </summary>
     public static class Config
     {
         public const string ServiceBase = "http://192.168.1.135:3000/api/knx/";

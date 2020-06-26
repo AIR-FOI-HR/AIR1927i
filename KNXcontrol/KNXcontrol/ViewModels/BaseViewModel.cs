@@ -10,6 +10,9 @@ using KNXcontrol.Services;
 
 namespace KNXcontrol.ViewModels
 {
+    /// <summary>
+    /// Class with some common properties and methods for viewModels - other viewModels inherit this class
+    /// </summary>
     public class BaseViewModel : INotifyPropertyChanged
     {
 

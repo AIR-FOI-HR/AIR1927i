@@ -2,6 +2,9 @@
 
 namespace KNXcontrol.Models
 {
+    /// <summary>
+    /// Helper class with a list of available Data Point Types
+    /// </summary>
     public class DPT
     {
         public List<string> DPTs { get; set; }

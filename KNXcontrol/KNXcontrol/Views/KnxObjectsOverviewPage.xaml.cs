@@ -31,7 +31,12 @@ namespace KNXcontrol.Views
             if (viewModel.KnxObjects?.Count == 0)
                 viewModel.IsBusy = true;
         }
-
+        /// <summary>
+        /// Method for opening modal for adding new objects
+        /// Opens new modal where data is entered, then uses the MessagingCenter to retrieve the data and add the new object
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void AddKnxObject_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NavigationPage(new NewKnxObjectPage(null, await RoomsService.RoomsOverview(), await TypesService.TypesOverview())));
@@ -40,7 +45,11 @@ namespace KNXcontrol.Views
                 viewModel.KnxObjects.Add(knxObject);
             });
         }
-
+        /// <summary>
+        /// Prompts the user to confirm deletion, deletes the selected object
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void Delete_Clicked(object sender, EventArgs e)
         {
             var id = ((Button)sender).CommandParameter.ToString();
@@ -58,7 +67,12 @@ namespace KNXcontrol.Views
                 }
             }
         }
-
+        /// <summary>
+        /// Gets called on object doubleTap - used to open modal for updating the selected object
+        /// Uses MessagingCenter to retrieve new data and update
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void OnKnxObjectSelection(object sender, EventArgs e)
         {
             var knxObject = ((TappedEventArgs)e).Parameter as KnxObject;

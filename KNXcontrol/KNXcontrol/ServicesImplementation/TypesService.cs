@@ -10,6 +10,11 @@ namespace KNXcontrol.ServicesImplementation
 {
     public class TypesService : ITypesService
     {
+        /// <summary>
+        /// Adds new object type to the database
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public async Task<bool> AddType(Type type)
         {
             try
@@ -23,7 +28,10 @@ namespace KNXcontrol.ServicesImplementation
                 return false;
             }
         }
-
+        /// <summary>
+        /// Returns all object types from the database
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<Type>> TypesOverview()
         {
             try
@@ -35,7 +43,11 @@ namespace KNXcontrol.ServicesImplementation
                 return new List<Type>();
             }
         }
-
+        /// <summary>
+        /// Delete the type with selected id from database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<bool> DeleteType(string id)
         {
             try
@@ -48,7 +60,11 @@ namespace KNXcontrol.ServicesImplementation
                 return false;
             }
         }
-
+        /// <summary>
+        /// Updates the data of the selected type
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public async Task<bool> UpdateType(Type type)
         {
             try

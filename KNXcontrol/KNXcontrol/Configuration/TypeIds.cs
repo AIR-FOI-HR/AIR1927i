@@ -1,5 +1,8 @@
 ﻿namespace KNXcontrol.Configuration
 {
+    /// <summary>
+    /// Helper class with enumaration of type Ids
+    /// </summary>
     public static class TypeIds
     {
         public static string LightRegular = "3470cecb-2449-4a5d-ae6e-1b7b34ce1c27";

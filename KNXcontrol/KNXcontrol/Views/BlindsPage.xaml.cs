@@ -23,7 +23,11 @@ namespace KNXcontrol.Views
             base.OnAppearing();
             Setup();
         }
-
+        /// <summary>
+        /// Setup method that loads KNX object for each room, then sets up the controls based on type 
+        /// Adds controls for moving the blinds up/down and rotattion
+        /// Gets called in the OnAppearing method - everytime the current page is opened
+        /// </summary>
         private async void Setup()
         {
             stkLayout.Children.Clear();
@@ -135,7 +139,12 @@ namespace KNXcontrol.Views
                 }
             }
         }
-
+        /// <summary>
+        /// Calls service to move the blinds down
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="knxObj"></param>
         private void MoveBlindsDown(object sender, EventArgs e, KnxObject knxObj)
         {
             try
@@ -149,7 +158,12 @@ namespace KNXcontrol.Views
 
             }
         }
-
+        /// <summary>
+        /// Calls service to move the blinds up
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="knxObj"></param>
         private void MoveBlindsUp(object sender, EventArgs e, KnxObject knxObj)
         {
             try
@@ -163,7 +177,12 @@ namespace KNXcontrol.Views
 
             }
         }
-
+        /// <summary>
+        /// Calls service to rorate the blinds up
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="knxObj"></param>
         private void RotateUp(object sender, EventArgs e, KnxObject knxObj)
         {
             try
@@ -180,7 +199,12 @@ namespace KNXcontrol.Views
 
             }
         }
-
+        /// <summary>
+        /// Calls service to rorate the blinds up
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="knxObj"></param>
         private void RotateDown(object sender, EventArgs e, KnxObject knxObj)
         {
             try

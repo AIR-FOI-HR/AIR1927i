@@ -14,7 +14,12 @@ namespace KNXcontrol.Views
         public Room Room { get; set; }
         private readonly RoomsService roomsService = new RoomsService();
         public bool IsUpdate { get; set; }
-
+        /// <summary>
+        /// Constructor for managing rooms - gets room if update, else null
+        /// </summary>
+        /// <param name="knxObject"></param>
+        /// <param name="rooms"></param>
+        /// <param name="types"></param>
         public NewRoomPage(Room room)
         {
             InitializeComponent();
@@ -33,7 +38,11 @@ namespace KNXcontrol.Views
             Cancel.IsEnabled = false;
             await Navigation.PopModalAsync();
         }
-
+        /// <summary>
+        /// Validates user input and based on the IsUpdate flag, updates or creates a new room
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void Save_Clicked(object sender, EventArgs e)
         {
             if(string.IsNullOrEmpty(Room.Name))

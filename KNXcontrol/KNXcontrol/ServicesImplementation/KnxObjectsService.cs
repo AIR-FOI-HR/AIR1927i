@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace KNXcontrol.ServicesImplementation
 {
+    /// <summary>
+    /// KNX objects CRUD implementation
+    /// </summary>
     public class KnxObjectsService : IKnxObjectsService
     {
+        /// <summary>
+        /// Adds a new KNX object to the database
+        /// </summary>
+        /// <param name="knxObject"></param>
+        /// <returns></returns>
         public async Task<bool> AddKnxObject(KnxObject knxObject)
         {
             try
@@ -24,7 +32,11 @@ namespace KNXcontrol.ServicesImplementation
             }
         }
 
-
+        /// <summary>
+        /// Deletes KNX object with selected id from database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<bool> DeleteKnxObject(string id)
         {
             try
@@ -38,6 +50,10 @@ namespace KNXcontrol.ServicesImplementation
             }
         }
 
+        /// <summary>
+        /// Method for retrieving all KNX objects from database
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<KnxObject>> KnxObjectsOverview()
         {
             try
@@ -50,18 +66,27 @@ namespace KNXcontrol.ServicesImplementation
             }
         }
 
-        public async Task<List<KnxObject>> KnxObjectsByRoom(string knxObjectId)
+        /// <summary>
+        /// Returns all KNX objects that are linked with the selected room
+        /// </summary>
+        /// <param name="roomId"></param>
+        /// <returns></returns>
+        public async Task<List<KnxObject>> KnxObjectsByRoom(string roomId)
         {
             try
             {
-                return await (Config.ServiceBase + $"get-knx-objects/{knxObjectId}").GetJsonAsync<List<KnxObject>>();
+                return await (Config.ServiceBase + $"get-knx-objects/{roomId}").GetJsonAsync<List<KnxObject>>();
             }
             catch (Exception ex)
             {
                 return new List<KnxObject>();
             }
         }
-
+        /// <summary>
+        /// Method for updating KNX object data
+        /// </summary>
+        /// <param name="knxObject"></param>
+        /// <returns></returns>
         public async Task<bool> UpdateKnxObject(KnxObject knxObject)
         {
             try

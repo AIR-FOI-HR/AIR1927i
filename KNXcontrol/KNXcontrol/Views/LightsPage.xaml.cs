@@ -25,7 +25,11 @@ namespace KNXcontrol.Views
             base.OnAppearing();
             Setup();
         }
-
+        /// <summary>
+        /// Setup method that loads KNX object for each room, then sets up the controls based on type 
+        /// Adds controls for turning the lights on/off and dimming
+        /// Gets called in the OnAppearing method - everytime the current page is opened
+        /// </summary>
         private async void Setup()
         {
             stkLayout.Children.Clear();
@@ -102,7 +106,12 @@ namespace KNXcontrol.Views
                 }
             }
         }
-
+        /// <summary>
+        /// Changes the value of the dimmable KNX object when the slider is released
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="knxObj"></param>
         private void Slider_ValueChanged(object sender, EventArgs e, KnxObject knxObj)
         {
             try
@@ -117,7 +126,12 @@ namespace KNXcontrol.Views
 
             }
         }
-
+        /// <summary>
+        /// Switches the light on/off
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="knxObj"></param>
         private void ToggleChange(object sender, ToggledEventArgs e, KnxObject knxObj)
         {
             try

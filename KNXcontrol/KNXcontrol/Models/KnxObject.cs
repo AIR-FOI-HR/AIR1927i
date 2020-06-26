@@ -2,6 +2,9 @@
 
 namespace KNXcontrol.Models
 {
+    /// <summary>
+    /// Class for storing data aboutn KNX objects
+    /// </summary>
     public class KnxObject
     {
         public Guid _id { get; set; }

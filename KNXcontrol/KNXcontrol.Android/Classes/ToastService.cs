@@ -12,6 +12,10 @@ namespace KNXcontrol.Droid.Classes
         {
 
         }
+        /// <summary>
+        /// Implements IToastService - shows notification(message) to the user
+        /// </summary>
+        /// <param name="message"></param>
         public void ShowToast(string message)
         {
             Toast.MakeText(Forms.Context, message, ToastLength.Short).Show();

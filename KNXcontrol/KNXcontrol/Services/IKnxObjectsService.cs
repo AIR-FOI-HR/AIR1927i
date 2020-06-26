@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace KNXcontrol.Services
 {
+    /// <summary>
+    /// Interface used to define required methods for KNX objects CRUD
+    /// </summary>
     public interface IKnxObjectsService
     {
 

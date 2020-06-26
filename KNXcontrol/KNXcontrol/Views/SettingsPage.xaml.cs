@@ -35,7 +35,11 @@ namespace KNXcontrol.Views
         {
             await Navigation.PushModalAsync(new NavigationPage(new TypesOverviewPage()));
         }
-
+        /// <summary>
+        /// Method for central control of lighting - gets central function address from config and switches all the lights on/off
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void Lights_Clicked(object sender, EventArgs e)
         {
             _ = LightsService.Switch(new KnxObject
@@ -61,7 +65,11 @@ namespace KNXcontrol.Views
                 }
             }
         }
-
+        /// <summary>
+        /// Method for central control of blinds - gets central function address from config and moves all blinds up/down
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Blinds_Clicked(object sender, EventArgs e)
         {
             _ = BlindsService.Move(new KnxObject

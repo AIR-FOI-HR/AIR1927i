@@ -29,7 +29,11 @@ namespace KNXcontrol.Views
             if (viewModel.Rooms?.Count == 0)
                 viewModel.IsBusy = true;
         }
-
+        /// <summary>
+        /// Opens new modal for creating a room, uses MessagingCenter to retrieve data and pass it to service
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void AddRoom_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NavigationPage(new NewRoomPage(null)));
@@ -38,7 +42,11 @@ namespace KNXcontrol.Views
                 viewModel.Rooms.Add(room);
             });
         }
-
+        /// <summary>
+        /// Prompts user to confirm deletion, sends selected room to the service to be deleted
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void Delete_Clicked(object sender, EventArgs e)
         {
             var id = ((Button)sender).CommandParameter.ToString();
@@ -56,7 +64,11 @@ namespace KNXcontrol.Views
                 }
             }
         }
-
+        /// <summary>
+        /// On doubleTap opens new modal to update room data, uses MessagingCenter to retrieve data and pass to service
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void OnRoomSelection(object sender, EventArgs e)
         {
             var room = ((TappedEventArgs)e).Parameter as Room;

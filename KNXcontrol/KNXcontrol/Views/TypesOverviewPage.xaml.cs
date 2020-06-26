@@ -29,7 +29,11 @@ namespace KNXcontrol.Views
             if (viewModel.Types?.Count == 0)
                 viewModel.IsBusy = true;
         }
-
+        /// <summary>
+        /// Prompts user to confirm deletion, sends selected type to the service to be deleted
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void Delete_Clicked(object sender, EventArgs e)
         {
             var id = ((Button)sender).CommandParameter.ToString();
@@ -47,7 +51,11 @@ namespace KNXcontrol.Views
                 }
             }
         }
-
+        /// <summary>
+        /// On doubleTap opens new modal to update type data, uses MessagingCenter to retrieve data and pass to service
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void OnTypeSelection(object sender, EventArgs e)
         {
             var type = ((TappedEventArgs)e).Parameter as Type;
@@ -60,7 +68,11 @@ namespace KNXcontrol.Views
                 viewModel.Types[i] = newType;
             });
         }
-
+        /// <summary>
+        /// Opens new modal for creating a type, uses MessagingCenter to retrieve data and pass it to service
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void AddType_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NavigationPage(new NewTypePage(null)));

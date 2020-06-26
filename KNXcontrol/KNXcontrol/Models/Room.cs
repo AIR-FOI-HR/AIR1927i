@@ -2,6 +2,9 @@
 
 namespace KNXcontrol.Models
 {
+    /// <summary>
+    /// Class for storing data about rooms
+    /// </summary>
     public class Room
     {
         public Guid _id { get; set; }

@@ -18,6 +18,12 @@ namespace KNXcontrol.Views
         public List<Room> Rooms { get; set; }
         public List<Models.Type> Types { get; set; }
         public bool IsUpdate { get; set; }
+        /// <summary>
+        /// Constructor for managing knx objects - gets object if update, else null and list of rooms/types to be selected
+        /// </summary>
+        /// <param name="knxObject"></param>
+        /// <param name="rooms"></param>
+        /// <param name="types"></param>
         public NewKnxObjectPage(KnxObject knxObject, List<Room> rooms, List<Models.Type> types)
         {
             InitializeComponent();
@@ -62,7 +68,11 @@ namespace KNXcontrol.Views
             Cancel.IsEnabled = false;
             await Navigation.PopModalAsync();
         }
-
+        /// <summary>
+        /// Validates user input via Regex/other checks and based on the IsUpdate flag, updates or creates a new object
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void Save_Clicked(object sender, EventArgs e)
         {
             var regexPattern = "[0-9]{1,3}/{1}[0-9]{1,3}/{1}[0-9]{1,3}";
@@ -98,7 +108,11 @@ namespace KNXcontrol.Views
                 }
             }
         }
-
+        /// <summary>
+        /// On type change, sets the types default value to the value field
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnTypePickChange(object sender, EventArgs e)
         {
             if (KnxObject.Type != null)
