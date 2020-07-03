@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace KNXcontrol.Models
+namespace Model.Models
 {
     /// <summary>
     /// Helper class with a list of available Data Point Types

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KNXcontrol.Models
+namespace Model.Models
 {
     /// <summary>
     /// Class for storing data aboutn KNX objects

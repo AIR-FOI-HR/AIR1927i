@@ -1,7 +1,6 @@
-﻿using KNXcontrol.Models;
-using KNXcontrol.Services;
-using KNXcontrol.ServicesImplementation;
+﻿using KNXcontrol.Services;
 using KNXcontrol.ViewModels;
+using Model.Models;
 using System;
 using System.Linq;
 using Xamarin.Forms;
@@ -13,9 +12,6 @@ namespace KNXcontrol.Views
     public partial class KnxObjectsOverviewPage : ContentPage
     {
         readonly KnxObjectViewModel viewModel;
-        private readonly KnxObjectsService knxObjectsService = new KnxObjectsService();
-        private readonly RoomsService RoomsService = new RoomsService();
-        private readonly TypesService TypesService = new TypesService();
 
         public KnxObjectsOverviewPage()
         {
@@ -39,7 +35,7 @@ namespace KNXcontrol.Views
         /// <param name="e"></param>
         private async void AddKnxObject_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewKnxObjectPage(null, await RoomsService.RoomsOverview(), await TypesService.TypesOverview())));
+            await Navigation.PushModalAsync(new NavigationPage(new NewKnxObjectPage(null, await DependencyService.Get<IConnector>().RoomsOverview(), await DependencyService.Get<IConnector>().TypesOverview())));
             MessagingCenter.Subscribe<NewKnxObjectPage, KnxObject>(this, "CREATE", (page, knxObject) =>
             {
                 viewModel.KnxObjects.Add(knxObject);
@@ -58,7 +54,7 @@ namespace KNXcontrol.Views
 
             if (answer)
             {
-                var result = await knxObjectsService.DeleteKnxObject(id);
+                var result = await DependencyService.Get<IConnector>().DeleteKnxObject(id);
                 if (result)
                 {
                     DependencyService.Get<IToastService>().ShowToast("KNX objekt je uspješno obrisan!");
@@ -77,7 +73,7 @@ namespace KNXcontrol.Views
         {
             var knxObject = ((TappedEventArgs)e).Parameter as KnxObject;
 
-            await Navigation.PushModalAsync(new NavigationPage(new NewKnxObjectPage(knxObject, await RoomsService.RoomsOverview(), await TypesService.TypesOverview())));
+            await Navigation.PushModalAsync(new NavigationPage(new NewKnxObjectPage(knxObject, await DependencyService.Get<IConnector>().RoomsOverview(), await DependencyService.Get<IConnector>().TypesOverview())));
             MessagingCenter.Subscribe<NewKnxObjectPage, KnxObject>(this, "UPDATE", (page, newKnxObject) =>
             {
                 var oldKnxObject = viewModel.KnxObjects.FirstOrDefault(x => x._id == knxObject._id);

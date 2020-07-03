@@ -12,6 +12,7 @@ namespace KNXcontrol
             InitializeComponent();
 
             DependencyService.Register<IToastService>();
+            DependencyService.Register<IConnector>();
             MainPage = new MainPage();
         }
 

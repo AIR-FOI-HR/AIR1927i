@@ -1,6 +1,5 @@
-﻿using KNXcontrol.Models;
-using KNXcontrol.Services;
-using KNXcontrol.ServicesImplementation;
+﻿using KNXcontrol.Services;
+using Model.Models;
 using System;
 
 using Xamarin.Forms;
@@ -12,7 +11,6 @@ namespace KNXcontrol.Views
     public partial class NewRoomPage : ContentPage
     {
         public Room Room { get; set; }
-        private readonly RoomsService roomsService = new RoomsService();
         public bool IsUpdate { get; set; }
         /// <summary>
         /// Constructor for managing rooms - gets room if update, else null
@@ -53,14 +51,14 @@ namespace KNXcontrol.Views
                 Save.IsEnabled = false;
                 if (IsUpdate)
                 {
-                    await roomsService.UpdateRoom(Room);
+                    await DependencyService.Get<IConnector>().UpdateRoom(Room);
                     DependencyService.Get<IToastService>().ShowToast("Soba je uspješno ažurirana!");
                     MessagingCenter.Send(this, "UPDATE", Room);
                     await Navigation.PopModalAsync();
                 }
                 else
                 {
-                    await roomsService.AddRoom(Room);
+                    await DependencyService.Get<IConnector>().AddRoom(Room);
                     DependencyService.Get<IToastService>().ShowToast("Soba je uspješno kreirana!");
                     MessagingCenter.Send(this, "CREATE", Room);
                     await Navigation.PopModalAsync();

@@ -1,8 +1,7 @@
-﻿using KNXcontrol.Models;
-using KNXcontrol.Services;
-using KNXcontrol.ServicesImplementation;
+﻿using KNXcontrol.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Type = Model.Models.Type;
 using EventArgs = System.EventArgs;
 
 namespace KNXcontrol.Views
@@ -11,7 +10,6 @@ namespace KNXcontrol.Views
     public partial class NewTypePage : ContentPage
     {
         public Type Type { get; set; }
-        private readonly TypesService typesService = new TypesService();
         public bool IsUpdate { get; set; }
         /// <summary>
         /// Constructor for managing types - gets types if update, else null
@@ -54,14 +52,14 @@ namespace KNXcontrol.Views
                 Save.IsEnabled = false;
                 if (IsUpdate)
                 {
-                    await typesService.UpdateType(Type);
+                    await DependencyService.Get<IConnector>().UpdateType(Type);
                     DependencyService.Get<IToastService>().ShowToast("Tip je uspješno ažuriran!");
                     MessagingCenter.Send(this, "UPDATE", Type);
                     await Navigation.PopModalAsync();
                 }
                 else
                 {
-                    await typesService.AddType(Type);
+                    await DependencyService.Get<IConnector>().AddType(Type);
                     DependencyService.Get<IToastService>().ShowToast("Tip je uspješno kreiran!");
                     MessagingCenter.Send(this, "CREATE", Type);
                     await Navigation.PopModalAsync();

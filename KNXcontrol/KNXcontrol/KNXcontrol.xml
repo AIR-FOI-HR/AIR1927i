@@ -4,185 +4,9 @@
         <name>KNXcontrol</name>
     </assembly>
     <members>
-        <member name="T:KNXcontrol.Configuration.Config">
+        <member name="T:KNXcontrol.Services.IConnector">
             <summary>
-            Static class with configuaration settings - used for configuring the work of the application
-            </summary>
-        </member>
-        <member name="T:KNXcontrol.Configuration.TypeIds">
-            <summary>
-            Helper class with enumaration of type Ids
-            </summary>
-        </member>
-        <member name="T:KNXcontrol.Models.DPT">
-            <summary>
-            Helper class with a list of available Data Point Types
-            </summary>
-        </member>
-        <member name="T:KNXcontrol.Models.KnxObject">
-            <summary>
-            Class for storing data aboutn KNX objects
-            </summary>
-        </member>
-        <member name="T:KNXcontrol.Models.Room">
-            <summary>
-            Class for storing data about rooms
-            </summary>
-        </member>
-        <member name="T:KNXcontrol.Models.Type">
-            <summary>
-            Class for storing data abount KNX object types
-            </summary>
-        </member>
-        <member name="T:KNXcontrol.ServicesImplementation.BlindsService">
-            <summary>
-            Blinds control implementation methods
-            </summary>
-        </member>
-        <member name="M:KNXcontrol.ServicesImplementation.BlindsService.Move(KNXcontrol.Models.KnxObject)">
-            <summary>
-            Method that is used to move the blinds up/down
-            </summary>
-            <param name="knxObject"></param>
-            <returns></returns>
-        </member>
-        <member name="M:KNXcontrol.ServicesImplementation.BlindsService.Rotate(KNXcontrol.Models.KnxObject)">
-            <summary>
-            Method that is used to rotate the blinds 
-            </summary>
-            <param name="knxObject"></param>
-            <returns></returns>
-        </member>
-        <member name="T:KNXcontrol.ServicesImplementation.KnxObjectsService">
-            <summary>
-            KNX objects CRUD implementation
-            </summary>
-        </member>
-        <member name="M:KNXcontrol.ServicesImplementation.KnxObjectsService.AddKnxObject(KNXcontrol.Models.KnxObject)">
-            <summary>
-            Adds a new KNX object to the database
-            </summary>
-            <param name="knxObject"></param>
-            <returns></returns>
-        </member>
-        <member name="M:KNXcontrol.ServicesImplementation.KnxObjectsService.DeleteKnxObject(System.String)">
-            <summary>
-            Deletes KNX object with selected id from database
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:KNXcontrol.ServicesImplementation.KnxObjectsService.KnxObjectsOverview">
-            <summary>
-            Method for retrieving all KNX objects from database
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:KNXcontrol.ServicesImplementation.KnxObjectsService.KnxObjectsByRoom(System.String)">
-            <summary>
-            Returns all KNX objects that are linked with the selected room
-            </summary>
-            <param name="roomId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:KNXcontrol.ServicesImplementation.KnxObjectsService.UpdateKnxObject(KNXcontrol.Models.KnxObject)">
-            <summary>
-            Method for updating KNX object data
-            </summary>
-            <param name="knxObject"></param>
-            <returns></returns>
-        </member>
-        <member name="T:KNXcontrol.ServicesImplementation.LightsService">
-            <summary>
-            Lights control implementation methods
-            </summary>
-        </member>
-        <member name="M:KNXcontrol.ServicesImplementation.LightsService.Dim(KNXcontrol.Models.KnxObject)">
-            <summary>
-            Sets the brightness of the selected dimmable KNX object 
-            </summary>
-            <param name="knxObject"></param>
-            <returns></returns>
-        </member>
-        <member name="M:KNXcontrol.ServicesImplementation.LightsService.Switch(KNXcontrol.Models.KnxObject)">
-            <summary>
-            Switches the state of selected KNX object - on/off
-            </summary>
-            <param name="knxObject"></param>
-            <returns></returns>
-        </member>
-        <member name="M:KNXcontrol.ServicesImplementation.RoomsService.AddRoom(KNXcontrol.Models.Room)">
-            <summary>
-            Adds new room to the database
-            </summary>
-            <param name="room"></param>
-            <returns></returns>
-        </member>
-        <member name="M:KNXcontrol.ServicesImplementation.RoomsService.RoomsOverview">
-            <summary>
-            Returns all rooms from the database
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:KNXcontrol.ServicesImplementation.RoomsService.DeleteRoom(System.String)">
-            <summary>
-            Deletes the room with selected id from the database
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:KNXcontrol.ServicesImplementation.RoomsService.UpdateRoom(KNXcontrol.Models.Room)">
-            <summary>
-            Updates selected room data
-            </summary>
-            <param name="room"></param>
-            <returns></returns>
-        </member>
-        <member name="M:KNXcontrol.ServicesImplementation.TypesService.AddType(KNXcontrol.Models.Type)">
-            <summary>
-            Adds new object type to the database
-            </summary>
-            <param name="type"></param>
-            <returns></returns>
-        </member>
-        <member name="M:KNXcontrol.ServicesImplementation.TypesService.TypesOverview">
-            <summary>
-            Returns all object types from the database
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:KNXcontrol.ServicesImplementation.TypesService.DeleteType(System.String)">
-            <summary>
-            Delete the type with selected id from database
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:KNXcontrol.ServicesImplementation.TypesService.UpdateType(KNXcontrol.Models.Type)">
-            <summary>
-            Updates the data of the selected type
-            </summary>
-            <param name="type"></param>
-            <returns></returns>
-        </member>
-        <member name="T:KNXcontrol.Services.IBlindsService">
-            <summary>
-            Interface used to define required methods for blinds control
-            </summary>
-        </member>
-        <member name="T:KNXcontrol.Services.IKnxObjectsService">
-            <summary>
-            Interface used to define required methods for KNX objects CRUD
-            </summary>
-        </member>
-        <member name="T:KNXcontrol.Services.ILightsService">
-            <summary>
-            Interface used to define required methods for lights control
-            </summary>
-        </member>
-        <member name="T:KNXcontrol.Services.IRoomsService">
-            <summary>
-            Interface used to define required methods for rooms CRUD
+            Interface that defines methods that should be implemented and used to communicate with Raspberry Pi server
             </summary>
         </member>
         <member name="M:KNXcontrol.Services.IToastService.ShowToast(System.String)">
@@ -190,11 +14,6 @@
             Interface that defines a method that should be implemented for notifying the user
             </summary>
             <param name="message"></param>
-        </member>
-        <member name="T:KNXcontrol.Services.ITypesService">
-            <summary>
-            Interface used to define required methods for KNX object types CRUD
-            </summary>
         </member>
         <member name="T:KNXcontrol.ViewModels.BaseViewModel">
             <summary>
@@ -244,7 +63,7 @@
             Gets called in the OnAppearing method - everytime the current page is opened
             </summary>
         </member>
-        <member name="M:KNXcontrol.Views.BlindsPage.MoveBlindsDown(System.Object,System.EventArgs,KNXcontrol.Models.KnxObject)">
+        <member name="M:KNXcontrol.Views.BlindsPage.MoveBlindsDown(System.Object,System.EventArgs,Model.Models.KnxObject)">
             <summary>
             Calls service to move the blinds down
             </summary>
@@ -252,7 +71,7 @@
             <param name="e"></param>
             <param name="knxObj"></param>
         </member>
-        <member name="M:KNXcontrol.Views.BlindsPage.MoveBlindsUp(System.Object,System.EventArgs,KNXcontrol.Models.KnxObject)">
+        <member name="M:KNXcontrol.Views.BlindsPage.MoveBlindsUp(System.Object,System.EventArgs,Model.Models.KnxObject)">
             <summary>
             Calls service to move the blinds up
             </summary>
@@ -260,7 +79,7 @@
             <param name="e"></param>
             <param name="knxObj"></param>
         </member>
-        <member name="M:KNXcontrol.Views.BlindsPage.RotateUp(System.Object,System.EventArgs,KNXcontrol.Models.KnxObject)">
+        <member name="M:KNXcontrol.Views.BlindsPage.RotateUp(System.Object,System.EventArgs,Model.Models.KnxObject)">
             <summary>
             Calls service to rorate the blinds up
             </summary>
@@ -268,7 +87,7 @@
             <param name="e"></param>
             <param name="knxObj"></param>
         </member>
-        <member name="M:KNXcontrol.Views.BlindsPage.RotateDown(System.Object,System.EventArgs,KNXcontrol.Models.KnxObject)">
+        <member name="M:KNXcontrol.Views.BlindsPage.RotateDown(System.Object,System.EventArgs,Model.Models.KnxObject)">
             <summary>
             Calls service to rorate the blinds up
             </summary>
@@ -306,7 +125,7 @@
             Gets called in the OnAppearing method - everytime the current page is opened
             </summary>
         </member>
-        <member name="M:KNXcontrol.Views.LightsPage.Slider_ValueChanged(System.Object,System.EventArgs,KNXcontrol.Models.KnxObject)">
+        <member name="M:KNXcontrol.Views.LightsPage.Slider_ValueChanged(System.Object,System.EventArgs,Model.Models.KnxObject)">
             <summary>
             Changes the value of the dimmable KNX object when the slider is released
             </summary>
@@ -314,7 +133,7 @@
             <param name="e"></param>
             <param name="knxObj"></param>
         </member>
-        <member name="M:KNXcontrol.Views.LightsPage.ToggleChange(System.Object,Xamarin.Forms.ToggledEventArgs,KNXcontrol.Models.KnxObject)">
+        <member name="M:KNXcontrol.Views.LightsPage.ToggleChange(System.Object,Xamarin.Forms.ToggledEventArgs,Model.Models.KnxObject)">
             <summary>
             Switches the light on/off
             </summary>
@@ -322,7 +141,7 @@
             <param name="e"></param>
             <param name="knxObj"></param>
         </member>
-        <member name="M:KNXcontrol.Views.NewKnxObjectPage.#ctor(KNXcontrol.Models.KnxObject,System.Collections.Generic.List{KNXcontrol.Models.Room},System.Collections.Generic.List{KNXcontrol.Models.Type})">
+        <member name="M:KNXcontrol.Views.NewKnxObjectPage.#ctor(Model.Models.KnxObject,System.Collections.Generic.List{Model.Models.Room},System.Collections.Generic.List{Model.Models.Type})">
             <summary>
             Constructor for managing knx objects - gets object if update, else null and list of rooms/types to be selected
             </summary>
@@ -344,7 +163,7 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:KNXcontrol.Views.NewRoomPage.#ctor(KNXcontrol.Models.Room)">
+        <member name="M:KNXcontrol.Views.NewRoomPage.#ctor(Model.Models.Room)">
             <summary>
             Constructor for managing rooms - gets room if update, else null
             </summary>
@@ -359,7 +178,7 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:KNXcontrol.Views.NewTypePage.#ctor(KNXcontrol.Models.Type)">
+        <member name="M:KNXcontrol.Views.NewTypePage.#ctor(Model.Models.Type)">
             <summary>
             Constructor for managing types - gets types if update, else null
             </summary>

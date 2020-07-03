@@ -1,5 +1,5 @@
-﻿using KNXcontrol.Models;
-using KNXcontrol.ServicesImplementation;
+﻿using KNXcontrol.Services;
+using Model.Models;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -14,7 +14,6 @@ namespace KNXcontrol.ViewModels
     {
         public ObservableCollection<KnxObject> KnxObjects { get; set; }
         public Command LoadKnxObjectsCommand { get; set; }
-        private readonly KnxObjectsService knxObjectsService = new KnxObjectsService();
 
         public KnxObjectViewModel()
         {
@@ -32,7 +31,7 @@ namespace KNXcontrol.ViewModels
             try
             {
                 KnxObjects.Clear();
-                var knxObjects = await knxObjectsService.KnxObjectsOverview();
+                var knxObjects = await DependencyService.Get<IConnector>().KnxObjectsOverview();
                 foreach (var knxObject in knxObjects)
                 {
                     KnxObjects.Add(knxObject);

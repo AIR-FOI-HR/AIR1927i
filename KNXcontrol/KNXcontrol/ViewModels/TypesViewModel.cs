@@ -1,5 +1,5 @@
-﻿using KNXcontrol.Models;
-using KNXcontrol.ServicesImplementation;
+﻿using KNXcontrol.Services;
+using Model.Models;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -13,7 +13,6 @@ namespace KNXcontrol.ViewModels
     {
         public ObservableCollection<Type> Types { get; set; }
         public Command LoadTypesCommand { get; set; }
-        private readonly TypesService typesService = new TypesService();
 
         public TypesViewModel()
         {
@@ -31,7 +30,7 @@ namespace KNXcontrol.ViewModels
             try
             {
                 Types.Clear();
-                var types = await typesService.TypesOverview();
+                var types = await DependencyService.Get<IConnector>().TypesOverview();
                 foreach (var type in types)
                 {
                     Types.Add(type);

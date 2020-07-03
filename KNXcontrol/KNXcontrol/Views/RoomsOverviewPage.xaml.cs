@@ -1,7 +1,6 @@
-﻿using KNXcontrol.Models;
-using KNXcontrol.Services;
-using KNXcontrol.ServicesImplementation;
+﻿using KNXcontrol.Services;
 using KNXcontrol.ViewModels;
+using Model.Models;
 using System;
 using System.Linq;
 using Xamarin.Forms;
@@ -13,7 +12,6 @@ namespace KNXcontrol.Views
     public partial class RoomsOverviewPage : ContentPage
     {
         readonly RoomsViewModel viewModel;
-        private readonly RoomsService roomsService = new RoomsService();
 
         public RoomsOverviewPage()
         {
@@ -55,7 +53,7 @@ namespace KNXcontrol.Views
 
             if (answer)
             {
-                var result = await roomsService.DeleteRoom(id);
+                var result = await DependencyService.Get<IConnector>().DeleteRoom(id);
                 if (result)
                 {
                     DependencyService.Get<IToastService>().ShowToast("Prostorija je uspješno obrisana!");

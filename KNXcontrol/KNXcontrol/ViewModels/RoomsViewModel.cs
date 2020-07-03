@@ -1,9 +1,7 @@
-﻿using KNXcontrol.Models;
-using KNXcontrol.ServicesImplementation;
-using System;
+﻿using KNXcontrol.Services;
+using Model.Models;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace KNXcontrol.ViewModels
@@ -15,7 +13,6 @@ namespace KNXcontrol.ViewModels
     {
         public ObservableCollection<Room> Rooms { get; set; }
         public Command LoadRoomsCommand { get; set; }
-        private readonly RoomsService roomsService = new RoomsService();
 
         public RoomsViewModel()
         {
@@ -33,7 +30,7 @@ namespace KNXcontrol.ViewModels
             try
             {
                 Rooms.Clear();
-                var rooms = await roomsService.RoomsOverview();
+                var rooms = await DependencyService.Get<IConnector>().RoomsOverview();
                 foreach (var room in rooms)
                 {
                     Rooms.Add(room);

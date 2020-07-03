@@ -1,6 +1,6 @@
-﻿using KNXcontrol.Configuration;
-using KNXcontrol.Models;
-using KNXcontrol.ServicesImplementation;
+﻿using KNXcontrol.Services;
+using Model.Configuration;
+using Model.Models;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,9 +10,6 @@ namespace KNXcontrol.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BlindsPage : ContentPage
     {
-        private readonly RoomsService RoomsService = new RoomsService();
-        private readonly KnxObjectsService KnxObjectsService = new KnxObjectsService();
-        private readonly BlindsService BlindsService = new BlindsService();
         public BlindsPage()
         {
             InitializeComponent();
@@ -31,11 +28,11 @@ namespace KNXcontrol.Views
         private async void Setup()
         {
             stkLayout.Children.Clear();
-            var rooms = await RoomsService.RoomsOverview();
+            var rooms = await DependencyService.Get<IConnector>().RoomsOverview();
 
             foreach (var room in rooms)
             {
-                var knxObjectsInRoom = await KnxObjectsService.KnxObjectsByRoom(room._id.ToString());
+                var knxObjectsInRoom = await DependencyService.Get<IConnector>().KnxObjectsByRoom(room._id.ToString());
                 if (knxObjectsInRoom.Count > 0)
                 {
                     var headerLabel = new Label
@@ -150,8 +147,8 @@ namespace KNXcontrol.Views
             try
             {
                 knxObj.Value = "0";
-                _ = BlindsService.Move(knxObj);
-                _ = KnxObjectsService.UpdateKnxObject(knxObj);
+                _ = DependencyService.Get<IConnector>().Move(knxObj);
+                _ = DependencyService.Get<IConnector>().UpdateKnxObject(knxObj);
             }
             catch
             {
@@ -169,8 +166,8 @@ namespace KNXcontrol.Views
             try
             {
                 knxObj.Value = "1";
-                _ = BlindsService.Move(knxObj);
-                _ = KnxObjectsService.UpdateKnxObject(knxObj);
+                _ = DependencyService.Get<IConnector>().Move(knxObj);
+                _ = DependencyService.Get<IConnector>().UpdateKnxObject(knxObj);
             }
             catch
             {
@@ -190,8 +187,8 @@ namespace KNXcontrol.Views
                 if(int.Parse(knxObj.Value) < 7)
                 {
                     knxObj.Value = (int.Parse(knxObj.Value) + 1).ToString();
-                    _ = BlindsService.Rotate(knxObj);
-                    _ = KnxObjectsService.UpdateKnxObject(knxObj);
+                    _ = DependencyService.Get<IConnector>().Rotate(knxObj);
+                    _ = DependencyService.Get<IConnector>().UpdateKnxObject(knxObj);
                 }
             }
             catch
@@ -212,8 +209,8 @@ namespace KNXcontrol.Views
                 if (int.Parse(knxObj.Value) > 0)
                 {
                     knxObj.Value = (int.Parse(knxObj.Value) - 1).ToString();
-                    _ = BlindsService.Rotate(knxObj);
-                    _ = KnxObjectsService.UpdateKnxObject(knxObj);
+                    _ = DependencyService.Get<IConnector>().Rotate(knxObj);
+                    _ = DependencyService.Get<IConnector>().UpdateKnxObject(knxObj);
                 }
             }
             catch

@@ -1,11 +1,11 @@
-﻿using KNXcontrol.Models;
-using KNXcontrol.Services;
-using KNXcontrol.ServicesImplementation;
+﻿using KNXcontrol.Services;
+using Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Type = Model.Models.Type;
 
 namespace KNXcontrol.Views
 {
@@ -13,10 +13,9 @@ namespace KNXcontrol.Views
     public partial class NewKnxObjectPage : ContentPage
     {
         public KnxObject KnxObject { get; set; }
-        private readonly KnxObjectsService KnxObjectsService = new KnxObjectsService();
         public List<string> DataPointTypes { get; set; }
         public List<Room> Rooms { get; set; }
-        public List<Models.Type> Types { get; set; }
+        public List<Type> Types { get; set; }
         public bool IsUpdate { get; set; }
         /// <summary>
         /// Constructor for managing knx objects - gets object if update, else null and list of rooms/types to be selected
@@ -24,7 +23,7 @@ namespace KNXcontrol.Views
         /// <param name="knxObject"></param>
         /// <param name="rooms"></param>
         /// <param name="types"></param>
-        public NewKnxObjectPage(KnxObject knxObject, List<Room> rooms, List<Models.Type> types)
+        public NewKnxObjectPage(KnxObject knxObject, List<Room> rooms, List<Type> types)
         {
             InitializeComponent();
 
@@ -94,14 +93,14 @@ namespace KNXcontrol.Views
                 Save.IsEnabled = false;
                 if (IsUpdate)
                 {
-                    await KnxObjectsService.UpdateKnxObject(KnxObject);
+                    await DependencyService.Get<IConnector>().UpdateKnxObject(KnxObject);
                     DependencyService.Get<IToastService>().ShowToast("KNX objekt je uspješno ažuriran!");
                     MessagingCenter.Send(this, "UPDATE", KnxObject);
                     await Navigation.PopModalAsync();
                 }
                 else
                 {
-                    await KnxObjectsService.AddKnxObject(KnxObject);
+                    await DependencyService.Get<IConnector>().AddKnxObject(KnxObject);
                     DependencyService.Get<IToastService>().ShowToast("KNX objekt je uspješno kreiran!");
                     MessagingCenter.Send(this, "CREATE", KnxObject);
                     await Navigation.PopModalAsync();

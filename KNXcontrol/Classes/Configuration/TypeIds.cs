@@ -1,4 +1,4 @@
-﻿namespace KNXcontrol.Configuration
+﻿namespace Model.Configuration
 {
     /// <summary>
     /// Helper class with enumaration of type Ids

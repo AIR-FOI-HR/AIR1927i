@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-using Xamarin.Forms;
-
-using KNXcontrol.Models;
-using KNXcontrol.Services;
-
 namespace KNXcontrol.ViewModels
 {
     /// <summary>

@@ -1,7 +1,6 @@
-﻿using KNXcontrol.Models;
-using KNXcontrol.Services;
-using KNXcontrol.ServicesImplementation;
+﻿using KNXcontrol.Services;
 using KNXcontrol.ViewModels;
+using Model.Models;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -13,7 +12,6 @@ namespace KNXcontrol.Views
     public partial class TypesOverviewPage : ContentPage
     {
         readonly TypesViewModel viewModel;
-        private readonly TypesService typesService = new TypesService();
 
         public TypesOverviewPage()
         {
@@ -42,7 +40,7 @@ namespace KNXcontrol.Views
 
             if (answer)
             {
-                var result = await typesService.DeleteType(id);
+                var result = await DependencyService.Get<IConnector>().DeleteType(id);
                 if (result)
                 {
                     DependencyService.Get<IToastService>().ShowToast("Tip je uspješno obrisan!");

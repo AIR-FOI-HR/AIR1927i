@@ -1,6 +1,6 @@
-﻿using KNXcontrol.Configuration;
-using KNXcontrol.Models;
-using KNXcontrol.ServicesImplementation;
+﻿using KNXcontrol.Services;
+using Model.Configuration;
+using Model.Models;
 using System;
 
 using Xamarin.Forms;
@@ -11,9 +11,6 @@ namespace KNXcontrol.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage
     {
-        public LightsService LightsService = new LightsService();
-        public BlindsService BlindsService = new BlindsService();
-        public KnxObjectsService KnxObjectsService = new KnxObjectsService();
         private int LightValue = 0;
         private int BlindsValue = 0;
         public SettingsPage()
@@ -42,7 +39,7 @@ namespace KNXcontrol.Views
         /// <param name="e"></param>
         private async void Lights_Clicked(object sender, EventArgs e)
         {
-            _ = LightsService.Switch(new KnxObject
+            _ = DependencyService.Get<IConnector>().Switch(new KnxObject
             {
                 Address = Config.LightsCentral,
                 Value = LightValue == 0 ? 1.ToString() : 0.ToString(),
@@ -50,18 +47,18 @@ namespace KNXcontrol.Views
             });
             LightValue = LightValue == 0 ? 1 : 0;
 
-            var allObjects = await KnxObjectsService.KnxObjectsOverview();
+            var allObjects = await DependencyService.Get<IConnector>().KnxObjectsOverview();
             foreach (KnxObject knxObject in allObjects)
             {
                 if(knxObject.Type._id.ToString() == TypeIds.LightRegular)
                 {
                     knxObject.Value = LightValue.ToString();
-                    _ = KnxObjectsService.UpdateKnxObject(knxObject);
+                    _ = DependencyService.Get<IConnector>().UpdateKnxObject(knxObject);
                 }else if(knxObject.Type._id.ToString() == TypeIds.LightDimmable)
                 {
                     var val = LightValue == 0 ? 0 : 255;
                     knxObject.Value = val.ToString();
-                    _ = KnxObjectsService.UpdateKnxObject(knxObject);
+                    _ = DependencyService.Get<IConnector>().UpdateKnxObject(knxObject);
                 }
             }
         }
@@ -72,7 +69,7 @@ namespace KNXcontrol.Views
         /// <param name="e"></param>
         private void Blinds_Clicked(object sender, EventArgs e)
         {
-            _ = BlindsService.Move(new KnxObject
+            _ = DependencyService.Get<IConnector>().Move(new KnxObject
             {
                 Address = Config.JaulousineCentral,
                 Value = BlindsValue == 0 ? 1.ToString() : 0.ToString(),
