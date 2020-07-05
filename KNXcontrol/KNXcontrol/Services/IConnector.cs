@@ -11,10 +11,10 @@ namespace KNXcontrol.Services
     {
         Task Move(KnxObject knxObject);
         Task Rotate(KnxObject knxObject);
-        Task<bool> AddKnxObject(KnxObject room);
+        Task<bool> AddKnxObject(KnxObject knxObject);
         Task<List<KnxObject>> KnxObjectsOverview(); 
         Task<List<KnxObject>> KnxObjectsByRoom(string roomId);
-        Task<bool> UpdateKnxObject(KnxObject room);
+        Task<bool> UpdateKnxObject(KnxObject knxObject);
         Task<bool> DeleteKnxObject(string id);
         Task Dim(KnxObject knxObject);
         Task Switch(KnxObject knxObject);
