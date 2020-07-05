@@ -37,6 +37,8 @@ namespace KNXcontrol.Views
                     var knxObjectsInRoom = await DependencyService.Get<IConnector>().KnxObjectsByRoom(room._id.ToString());
                     if (knxObjectsInRoom.Count > 0)
                     {
+                        var roomStack = new StackLayout();
+                        bool hasObjects = false;
                         var headerLabel = new Label
                         {
                             Text = room.Name,
@@ -44,7 +46,7 @@ namespace KNXcontrol.Views
                             Margin = new Thickness(15, 5, 0, 0),
                             FontAttributes = FontAttributes.Bold
                         };
-                        stkLayout.Children.Add(headerLabel);
+                        roomStack.Children.Add(headerLabel);
                         foreach (var knxObject in knxObjectsInRoom)
                         {
                             if (knxObject.Type._id.ToString() == TypeIds.LightDimmable)
@@ -68,8 +70,9 @@ namespace KNXcontrol.Views
                                     Text = knxObject.Description
                                 };
 
-                                stkLayout.Children.Add(description);
-                                stkLayout.Children.Add(slider);
+                                roomStack.Children.Add(description);
+                                roomStack.Children.Add(slider);
+                                hasObjects = true;
                             }
                             else if (knxObject.Type._id.ToString() == TypeIds.LightRegular)
                             {
@@ -97,8 +100,15 @@ namespace KNXcontrol.Views
 
                                 layout.Children.Add(description);
                                 layout.Children.Add(toggle);
-                                stkLayout.Children.Add(layout);
+                                hasObjects = true;
+                                roomStack.Children.Add(layout);
                             }
+
+                        }
+
+                        if (hasObjects)
+                        {
+                            stkLayout.Children.Add(roomStack);
                         }
                     }
                 }

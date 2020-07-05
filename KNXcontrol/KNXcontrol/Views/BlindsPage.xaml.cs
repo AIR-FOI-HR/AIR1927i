@@ -35,6 +35,8 @@ namespace KNXcontrol.Views
                 var knxObjectsInRoom = await DependencyService.Get<IConnector>().KnxObjectsByRoom(room._id.ToString());
                 if (knxObjectsInRoom.Count > 0)
                 {
+                    var roomStack = new StackLayout();
+                    bool hasObjects = false;
                     var headerLabel = new Label
                     {
                         Text = room.Name,
@@ -42,7 +44,7 @@ namespace KNXcontrol.Views
                         Margin = new Thickness(15, 5, 0, 0),
                         FontAttributes = FontAttributes.Bold
                     };
-                    stkLayout.Children.Add(headerLabel);
+                    roomStack.Children.Add(headerLabel);
                     foreach (var knxObject in knxObjectsInRoom)
                     {
                         if (knxObject.Type._id.ToString() == TypeIds.JaulousineMove)
@@ -83,7 +85,8 @@ namespace KNXcontrol.Views
                             };
                             frame.Content = completeStack;
 
-                            stkLayout.Children.Add(frame);
+                            roomStack.Children.Add(frame);
+                            hasObjects = true;
                         }
                         else if (knxObject.Type._id.ToString() == TypeIds.JaulousineRotate)
                         {
@@ -130,8 +133,14 @@ namespace KNXcontrol.Views
                                 Margin = new Thickness(10, 5, 10, 5)
                             };
                             frame.Content = completeStack;
-                            stkLayout.Children.Add(frame);
+                            roomStack.Children.Add(frame);
+                            hasObjects = true;
                         }
+                    }
+
+                    if (hasObjects)
+                    {
+                        stkLayout.Children.Add(roomStack);
                     }
                 }
             }
