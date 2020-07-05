@@ -2,6 +2,7 @@
 using Model.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -40,22 +41,8 @@ namespace KNXcontrol.Views
 
             if (IsUpdate)
             {
-                for (int i = 0; i < types.Count; i++)
-                {
-                    if (types[i]._id == knxObject.Type._id)
-                    {
-                        tip.SelectedIndex = i;
-                        break;
-                    }
-                }
-                for (int i = 0; i < rooms.Count; i++)
-                {
-                    if (rooms[i]._id == knxObject.Room._id)
-                    {
-                        prostorija.SelectedIndex = i;
-                        break;
-                    }
-                }
+                knxObject.Type = Types.FirstOrDefault(x => x._id == knxObject.Type._id);
+                knxObject.Room = Rooms.FirstOrDefault(x => x._id == knxObject.Room._id);
             }
 
             BindingContext = this;

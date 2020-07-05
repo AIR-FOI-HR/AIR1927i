@@ -21,7 +21,7 @@
                     x:Name="tip"
                     ItemsSource="{Binding Types}" 
                     ItemDisplayBinding="{Binding Name}"
-                    SelectedItem="{Binding KnxObject.Type}"
+                    SelectedItem="{Binding KnxObject.Type, Mode=TwoWay}"
                     SelectedIndexChanged="OnTypePickChange">
             </Picker>
             <Label Text="Vrijednost" FontSize="Medium" FontAttributes="Bold"/>
@@ -36,7 +36,7 @@
                     x:Name="prostorija"
                     ItemsSource="{Binding Rooms}"
                     ItemDisplayBinding="{Binding Name}"
-                    SelectedItem="{Binding KnxObject.Room}">
+                    SelectedItem="{Binding KnxObject.Room, Mode=TwoWay}">
             </Picker>
             <Label Text="Opis" FontSize="Medium" />
             <Editor Text="{Binding KnxObject.Description}" FontSize="Small"/>
